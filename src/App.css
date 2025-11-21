@@ -1,38 +1,87 @@
-.App {
-  text-align: center;
+/* App.css - Pinterest style with delete buttons */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #fafafa 0%, #f0f4fb 100%);
+  color: #111;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* NAV */
+.nav {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:14px 20px;
+  position:sticky;
+  top:0;
+  z-index:60;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(90deg, rgba(255,255,255,0.92), rgba(255,255,255,0.78));
+  box-shadow: 0 6px 18px rgba(12,20,40,0.06);
+  border-bottom: 1px solid rgba(20,30,60,0.03);
 }
+.nav-left { display:flex; gap:12px; align-items:center; }
+.brand { font-weight:800; color:#0b66ff; letter-spacing: -0.02em; font-size:20px; text-decoration:none; }
+.nav a { padding:8px 10px; border-radius:10px; text-decoration:none; color:#333; font-weight:600; font-size:14px; }
+.nav a.active, .nav a:hover { background: linear-gradient(90deg,#ffe9f6,#e9f5ff); transform: translateY(-1px); }
+.nav-right { display:flex; gap:8px; align-items:center; }
+.btn { background: linear-gradient(90deg,#7b61ff,#2ec4ff); color:white; border:none; padding:9px 12px; border-radius:10px; cursor:pointer; font-weight:700; }
+.btn.small { padding:7px 10px; font-size:13px; }
+.btn.secondary { background: linear-gradient(90deg,#ffd36b,#ff7bbd); color:#08122a; }
+.btn.danger { background: linear-gradient(90deg,#ff6b6b,#ff5a9e); color:white; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* container */
+.container { max-width:1200px; margin:22px auto; padding: 0 18px 64px; }
+
+/* auth card */
+.auth-card {
+  max-width:420px;
+  margin:30px auto;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow: 0 12px 30px rgba(9,20,40,0.06);
 }
+.auth-card h2 { margin-top:0; }
+.auth-card form { display:flex; flex-direction:column; gap:8px; }
+.auth-card input { padding:10px; border-radius:8px; border:1px solid #eee; }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+/* search */
+.search { padding:10px; border-radius:10px; border:1px solid #eee; width:100%; }
 
-.App-link {
-  color: #61dafb;
-}
+/* grid - masonry */
+.grid { column-gap: 18px; columns: 3; }
+@media (max-width:1100px) { .grid { columns: 2; } }
+@media (max-width:640px) { .grid { columns: 1; } }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* card */
+.card { display:inline-block; width:100%; margin:0 0 18px; border-radius:12px; overflow:hidden; background:white; box-shadow: 0 10px 30px rgba(9,20,40,0.06); transition: transform .18s ease, box-shadow .18s ease; cursor:pointer; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(9,20,40,0.12); }
+.img-wrap img { width:100%; height:auto; display:block; object-fit:cover; transition: transform .5s; }
+.card:hover .img-wrap img { transform: scale(1.03); }
+
+/* card-info */
+.card-info { padding:10px 12px; display:flex; justify-content:space-between; align-items:center; }
+.card-info button { background:transparent; border:none; font-size:20px; cursor:pointer; }
+
+/* tags */
+.tag-row { padding:8px 12px 14px; display:flex; gap:8px; flex-wrap:wrap; }
+.tag { font-size:12px; padding:6px 9px; border-radius:999px; font-weight:700; color:white; background: linear-gradient(135deg,#ff748c,#ffb871); }
+
+/* empty */
+.empty { padding:40px; text-align:center; color:#666; }
+
+/* modal */
+.modal { position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background: rgba(8,12,20,0.6); z-index:80; padding:20px; }
+.modal-content { background:white; max-width:1000px; width:100%; max-height:92vh; border-radius:14px; overflow:auto; box-shadow: 0 30px 80px rgba(0,0,0,0.5); padding:16px; display:flex; gap:16px; align-items:flex-start; }
+.modal-content img { max-width:60%; height:auto; border-radius:10px; object-fit:cover; }
+.modal-body { padding:6px 0; flex:1; }
+
+/* small screens */
+@media (max-width:860px) {
+  .modal-content { flex-direction:column; align-items:center; }
+  .modal-content img { max-width:100%; }
 }
